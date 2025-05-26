@@ -47,12 +47,14 @@ fn main() {
         Subcommand::Crawl {
             directory,
             follow_links,
+            respect_ignore,
             glob,
         } => crawl::crawl(
             &cache_file,
             &output_format,
             &directory,
             follow_links,
+            respect_ignore,
             glob.as_deref(),
         ),
         Subcommand::Cache { subcommand } => cache::cache(&cache_file, subcommand),
