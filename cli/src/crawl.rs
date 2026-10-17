@@ -15,6 +15,7 @@ pub fn crawl(
     output_format: &OutputFormat,
     directory: &Path,
     follow_links: bool,
+    respect_ignore: bool,
     glob: Option<&str>,
 ) -> Result<(), Error> {
     use ignore::types::TypesBuilder;
@@ -35,6 +36,9 @@ pub fn crawl(
     WalkBuilder::new(directory)
         .types(matcher)
         .follow_links(follow_links)
+        .ignore(respect_ignore)
+        .git_ignore(respect_ignore)
+        .git_global(respect_ignore)
         .build()
         .filter_map(|entry| match entry {
             Ok(entry) => Some(entry),

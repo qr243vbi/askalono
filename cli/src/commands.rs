@@ -67,6 +67,10 @@ pub enum Subcommand {
         #[clap(long = "follow")]
         follow_links: bool,
 
+        /// Respect ignore files
+        #[clap(long = "ignore", default_value = "true")]
+        respect_ignore: bool,
+
         /// Glob of files to check (defaults to license-like files)
         #[clap(long = "glob")]
         glob: Option<String>,
